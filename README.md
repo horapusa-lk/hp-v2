@@ -3,5 +3,8 @@ This is an auto-script for Ubuntu 18.04 to install Xray-Core with vless+tcp+ws c
 
 ## Install
 ```
-
+sudo su 
+wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash install.sh
 ```
+
+## 
