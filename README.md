@@ -7,4 +7,5 @@ sudo su
 wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash install.sh
 ```
 
-## 
+## Default ports and doors.
+![logo](https://telegra.ph/file/1b7cc871ebd3d5399f998.png)
