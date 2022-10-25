@@ -10,7 +10,7 @@ You can,
 
 using this script.
 
-## Installation
+## :heavy_exclamation_mark: Installation
 ```
 sudo su 
 wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash install.sh
