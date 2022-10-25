@@ -1,4 +1,4 @@
-# hp-v2
+# hp-v2 V1.0
 This is an auto-script for Ubuntu 18.04 to install Xray-Core with vless+tcp+ws configurations.
 ![logo](https://telegra.ph/file/1b7cc871ebd3d5399f998.png)
 
