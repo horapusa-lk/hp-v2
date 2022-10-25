@@ -19,3 +19,8 @@ wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash
 ## Default ports and doors.
 
 TCP WS Port : 443
+
+## :octocat: Credits
+
+1. Team Rezoth - V2ray install script
+2. Hora Pusa - Contributor
