@@ -8,8 +8,9 @@ You can,
 * list users
 * reboot server
 
-using this script
-## Install
+using this script.
+
+## Installation
 ```
 sudo su 
 wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash install.sh
@@ -17,3 +18,4 @@ wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash
 
 ## Default ports and doors.
 
+TCP WS Port : 443
