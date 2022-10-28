@@ -10,7 +10,11 @@ pip3 install -r requirements.txt
 
 echo Enter a bot token :
 read bot_token
-echo BOT_TOKEN=$bot_token > /root/configs.py
+echo BOT_TOKEN="$bot_token" > /root/configs.py
+
+echo Enter your telegram user id :
+read SUDO_ID
+echo SUDO_ID=$SUDO_ID >> /root/configs.py
 
 cp configs.py /usr/bin/
 cp bot.py /usr/bin/
