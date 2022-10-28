@@ -203,5 +203,5 @@ systemctl restart xray
 
 #install bbr
 
-curl -LJO https://raw.githubusercontent.com/teddysun/across/master/bbr.sh
+curl -LJO https://github.com/horapusa-lk/hp-v2/raw/main/bbr.sh
 bash bbr.sh
