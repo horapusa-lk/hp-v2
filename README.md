@@ -18,7 +18,7 @@ wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/install.sh && bash
 
 ## Default ports and doors.
 
-TCP WS Port : 443
+TCP XTLS Port : 443
 
 ## :octocat: Credits
 
