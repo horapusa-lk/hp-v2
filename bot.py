@@ -4,6 +4,7 @@ import json
 import platform
 import subprocess
 from configs import BOT_TOKEN
+from configs import SUDO_ID
 from telegram.ext.updater import Updater
 from telegram.update import Update
 from telegram.ext.callbackcontext import CallbackContext
