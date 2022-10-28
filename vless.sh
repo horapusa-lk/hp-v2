@@ -1,7 +1,5 @@
 #!/bin/bash
 
-UUID="9a88840c-3f4e-40ab-8e58-aa687c3a616d"
-
 rm -rf /etc/localtime
 cp /usr/share/zoneinfo/Asia/Colombo /etc/localtime
 date -R
@@ -31,12 +29,6 @@ cat << EOF > /usr/local/etc/xray/config.json
       "protocol": "vless",
       "settings": {
         "clients": [
-          {
-            "id": "$UUID",
-            "flow": "xtls-rprx-direct",
-            "level": 0,
-            "email": "love@example.com"
-          }
         ],
         "decryption": "none",
         "fallbacks": [
@@ -84,7 +76,7 @@ cat << EOF > /usr/local/etc/xray/config.json
       "settings": {
         "clients": [
           {
-            "password": "$UUID",
+            "password": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
             "level": 0,
             "email": "love@example.com"
           }
@@ -110,7 +102,7 @@ cat << EOF > /usr/local/etc/xray/config.json
       "settings": {
         "clients": [
           {
-            "id": "$UUID",
+            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
             "level": 0,
             "email": "love@example.com"
           }
@@ -133,7 +125,7 @@ cat << EOF > /usr/local/etc/xray/config.json
       "settings": {
         "clients": [
           {
-            "id": "$UUID",
+            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
             "level": 0,
             "email": "love@example.com"
           }
@@ -162,7 +154,7 @@ cat << EOF > /usr/local/etc/xray/config.json
       "settings": {
         "clients": [
           {
-            "id": "$UUID",
+            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
             "level": 0,
             "email": "love@example.com"
           }
