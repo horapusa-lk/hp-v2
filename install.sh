@@ -14,7 +14,6 @@ pip3 install -r requirements.txt
 
 python3 env_vars.py
 
-cp /root/configs.py /usr/bin/
 cp bot.py /usr/bin/
 cp bot.service /lib/systemd/system/
 sudo systemctl enable bot.service
