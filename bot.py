@@ -51,7 +51,6 @@ def monitor():
 
 ###############################################################################################
 
-sudo = 1436625686
 
 r = requests.get('https://ip4.seeip.org')
 public_ip = r.text
@@ -59,7 +58,7 @@ public_ip = r.text
 # with open("/root/bot/bot.token", "r") as token:
 #     bot_token = token.read()
 #     bot_token = str(bot_token)
-
+sudo = SUDO_ID
 bot_token = BOT_TOKEN
 updater = Updater(bot_token, use_context=True)
 
