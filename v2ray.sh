@@ -4,7 +4,6 @@ rm -rf /etc/localtime
 cp /usr/share/zoneinfo/Asia/Colombo /etc/localtime
 date -R
 
-
 #updating and adding firewall rules
 
 apt update
