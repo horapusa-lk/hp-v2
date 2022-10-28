@@ -8,3 +8,7 @@ cd hp-v2
 chmod +x *
 pip3 install -r requirements.txt
 bash v2ray.sh
+
+echo Enter a bot token :
+read bot_token
+echo BOT_TOKEN=$bot_token > /root/configs.py
