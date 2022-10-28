@@ -8,7 +8,7 @@ You can,
 * list users
 * reboot server
 
-using this script.
+using this server pannel and server bot.
 
 ## :heavy_exclamation_mark: Installation
 ```
