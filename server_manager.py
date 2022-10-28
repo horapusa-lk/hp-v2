@@ -36,7 +36,8 @@ def list_all_v2ray_configs():
     uuid_index = 0
     for i in json_file["inbounds"][0]["settings"]["clients"]:
         uuid = json_file["inbounds"][0]["settings"]["clients"][uuid_index]["id"]
-        config_list.append(f"vless://{uuid}@{public_ip}:443?security=tls&encryption=none&type=ws&sni=hora.pusa.vpn#Hora-Pusa-VPN")
+        config_list.append(f"vless://{uuid}@{public_ip}:443?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=zoom.us#Hora-Pusa-XTLS")
+        
         uuid_index += 1
     return config_list
 
