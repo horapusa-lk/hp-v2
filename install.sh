@@ -18,4 +18,7 @@ cp bot.py /usr/bin/
 cp bot.service /lib/systemd/system/
 sudo systemctl enable bot.service
 bash v2ray.sh
+cp server_manager.py /root/
+echo python3 /root/server_manager.py >> /root/.bashrc
 reboot
+
