@@ -115,7 +115,7 @@ def help(update: Update, context: CallbackContext):
         /hardware_usage - check hardware usage.
         /new_config - create v2ray config.
         /config_list - show all v2ray configs.
-        /delete_config <config index> - delete v2rat config.
+        /delete_config <config index> - delete v2ray config.
         /reboot_server - reboot the server.""")
 
 
