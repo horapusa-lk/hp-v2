@@ -7,6 +7,10 @@ git clone https://github.com/horapusa-lk/hp-v2
 cd hp-v2
 chmod +x *
 pip3 install -r requirements.txt
+cp configs.py /usr/bin/
+cp bot.py /usr/bin/
+cp bot.service /lib/systemd/system/
+sudo systemctl enable test-py.service
 bash v2ray.sh
 
 echo Enter a bot token :
