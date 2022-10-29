@@ -42,7 +42,7 @@ class ServerManager:
         from datetime import date
         public_ip = requests.get('https://api.ipify.org')
         public_ip = public_ip.text
-        with open('config.json') as json_file:
+        with open('/usr/local/etc/xray/config.json') as json_file:
             json_file = json.load(json_file)
         uuid = uuid.uuid4()
         today = date.today()
@@ -55,7 +55,7 @@ class ServerManager:
             "expire_date": f"{expire_date}"
         })
         vless_config = f"""vless://{uuid}@{public_ip}:443?security=tls&encryption=none&type=ws&sni=hora.pusa.vpn#{name}-Hora-Pusa-VPN"""
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         subprocess.run("sudo service xray restart", shell=True)
         return vless_config
@@ -65,7 +65,7 @@ class ServerManager:
         Delete expired vless configs
         """
         import json
-        with open('config.json') as json_file:
+        with open('/usr/local/etc/xray/config.json') as json_file:
             json_file = json.load(json_file)
 
         expired_user_index_list = []
@@ -80,7 +80,7 @@ class ServerManager:
         for user_index in expired_user_index_list:
             del json_file["inbounds"][0]["settings"]["clients"][user_index]
 
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         subprocess.run("sudo service xray restart", shell=True)
 
@@ -91,10 +91,10 @@ class ServerManager:
         import json
         import subprocess
         config_index -= 1
-        with open('config.json') as json_file:  # /usr/local/etc/xray/config.json
+        with open('/usr/local/etc/xray/config.json') as json_file:  # /usr/local/etc/xray/config.json
             json_file = json.load(json_file)
         del json_file["inbounds"][0]["settings"]["clients"][config_index]
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         subprocess.run("sudo service xray restart", shell=True)
 
@@ -107,7 +107,7 @@ class ServerManager:
         import json
         public_ip = requests.get('https://api.ipify.org')
         public_ip = public_ip.text
-        with open('config.json') as json_file:  # /usr/local/etc/xray/config.json
+        with open('/usr/local/etc/xray/config.json') as json_file:  # /usr/local/etc/xray/config.json
             json_file = json.load(json_file)
         config_list = []
         uuid_index = 0
