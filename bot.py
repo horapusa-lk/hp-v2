@@ -278,7 +278,7 @@ def config_list(update: Update, context: CallbackContext):
             for config in configs_list:
                 update.message.reply_text(config)
         except Exception:
-            update.message.reply_text("Reboot faild.")
+            update.message.reply_text("Faild to get config list.")
 
 
 def hardware_usage(update: Update, context: CallbackContext):
