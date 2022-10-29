@@ -114,7 +114,7 @@ class ServerManager:
             "created_date": f"{today}",
             "expire_date": f"{expire_date}"
         })
-        vless_config = f"""vless://{uuid}@{public_ip}:443?security=tls&encryption=none&type=ws&sni=hora.pusa.vpn#{name}-Hora-Pusa-VPN"""
+        vless_config = f"""vless://{uuid}@{public_ip}:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN"""
         with open('config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         return vless_config
@@ -177,7 +177,7 @@ class ServerManager:
             config_list.append(f"""Name : {name}
 Created date : {created_date}    
 Expire date : {expire_date}
-Config text : vless://{uuid}@{public_ip}:443?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=zoom.us#Hora-Pusa-XTLS""")
+Config text : vless://{uuid}@{public_ip}:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN""")
 
             uuid_index += 1
         return config_list
