@@ -120,6 +120,7 @@ class ServerManager:
         vless_config = f"""vless://{uuid}@{public_ip}:443?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN"""
         with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
+        os.system("sudo service xray restart")
         return vless_config
 
     def delete_expired_config_files(self):
