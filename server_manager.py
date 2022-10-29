@@ -50,9 +50,6 @@ class ServerManager:
         expire_date = self.gen_expire_date(valid_dates)
         json_file["inbounds"][0]["settings"]["clients"].append({
             "id": f"{uuid}",
-            "flow": "xtls-rprx-direct",
-            "level": 0,
-            "email": "love@example.com",
             "user_name": f"{name}",
             "created_date": f"{today}",
             "expire_date": f"{expire_date}"
