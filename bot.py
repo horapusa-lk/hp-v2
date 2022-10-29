@@ -102,7 +102,7 @@ class ServerManager:
         from datetime import date
         public_ip = requests.get('https://api.ipify.org')
         public_ip = public_ip.text
-        with open('config.json') as json_file:
+        with open('/usr/local/etc/xray/config.json') as json_file:
             json_file = json.load(json_file)
         uuid = uuid.uuid4()
         today = date.today()
@@ -110,12 +110,15 @@ class ServerManager:
         expire_date = self.gen_expire_date(valid_dates)
         json_file["inbounds"][0]["settings"]["clients"].append({
             "id": f"{uuid}",
+            "flow": "xtls-rprx-direct",
+            "level": 0,
+            "email": "love@example.com",
             "user_name": f"{name}",
             "created_date": f"{today}",
             "expire_date": f"{expire_date}"
         })
         vless_config = f"""vless://{uuid}@{public_ip}:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN"""
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         return vless_config
 
@@ -124,7 +127,7 @@ class ServerManager:
         Delete expired vless configs
         """
         import json
-        with open('config.json') as json_file:
+        with open('/usr/local/etc/xray/config.json') as json_file:
             json_file = json.load(json_file)
 
         expired_user_index_list = []
@@ -139,7 +142,7 @@ class ServerManager:
         for user_index in expired_user_index_list:
             del json_file["inbounds"][0]["settings"]["clients"][user_index]
 
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
 
     def delete_v2ray_config(self, config_index):
@@ -149,10 +152,10 @@ class ServerManager:
         import json
         import subprocess
         config_index -= 1
-        with open('config.json') as json_file:  # /usr/local/etc/xray/config.json
+        with open('/usr/local/etc/xray/config.json') as json_file:  # /usr/local/etc/xray/config.json
             json_file = json.load(json_file)
         del json_file["inbounds"][0]["settings"]["clients"][config_index]
-        with open('config.json', 'w') as json_write:
+        with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         subprocess.run("sudo service xray restart", shell=True)
 
@@ -210,6 +213,7 @@ def new_config(update: Update, context: CallbackContext):
     command[1] = int(command[1])
     name = command[0]
     valid_dates = command[1]
+    valid_dates = str(valid_dates)
     valid_dates = int(valid_dates)
     if update.message.chat.id == sudo:
         try:
