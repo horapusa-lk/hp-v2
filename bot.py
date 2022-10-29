@@ -210,6 +210,7 @@ def new_config(update: Update, context: CallbackContext):
     command[1] = int(command[1])
     name = command[0]
     valid_dates = command[1]
+    valid_dates = int(valid_dates)
     if update.message.chat.id == sudo:
         try:
             config = server_manager.create_new_config(name, valid_dates)
@@ -274,7 +275,10 @@ def config_list(update: Update, context: CallbackContext):
     if update.message.chat.id == sudo:
         try:
             configs_list = server_manager.list_all_v2ray_configs()
-            server_manager.delete_expired_config_files()
+            try:
+                server_manager.delete_expired_config_files()
+            except:
+                pass
             for config in configs_list:
                 update.message.reply_text(config)
         except Exception:
