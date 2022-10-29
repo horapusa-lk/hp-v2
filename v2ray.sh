@@ -1,26 +1,42 @@
-#!/bin/bash
+#!/bin/sh
+
+#configure timezone to sri lanka standards
 
 rm -rf /etc/localtime
 cp /usr/share/zoneinfo/Asia/Colombo /etc/localtime
 date -R
 
-#updating and adding firewall rules
-
-apt update
-apt upgrade
-apt purge iptables-persistent
 apt install ufw
+
+#firewall rules
 ufw allow 'OpenSSH'
 ufw allow 443/tcp
+ufw allow 80/tcp
 ufw enable
 
+#running xray install script for linux - systemd
+
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
+
+#adding new configuration files 
 
 rm -rf /usr/local/etc/xray/config.json
 cat << EOF > /usr/local/etc/xray/config.json
 {
   "log": {
-    "loglevel": "none"
+    "loglevel": "warning"
+  },
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "block"
+      }
+    ]
   },
   "inbounds": [
     {
@@ -29,36 +45,12 @@ cat << EOF > /usr/local/etc/xray/config.json
       "settings": {
         "clients": [
         ],
-        "decryption": "none",
-        "fallbacks": [
-          {
-            "dest": 1310,
-            "xver": 1
-          },
-          {
-            "path": "/websocket",
-            "dest": 1234,
-            "xver": 1
-          },
-          {
-            "path": "/vmesstcp",
-            "dest": 2345,
-            "xver": 1
-          },
-          {
-            "path": "/vmessws",
-            "dest": 3456,
-            "xver": 1
-          }
-        ]
+        "decryption": "none"
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "xtls",
-        "xtlsSettings": {
-          "alpn": [
-            "http/1.1"
-          ],
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
           "certificates": [
             {
               "certificateFile": "/etc/xray/xray.crt",
@@ -69,109 +61,30 @@ cat << EOF > /usr/local/etc/xray/config.json
       }
     },
     {
-      "port": 1310,
-      "listen": "127.0.0.1",
-      "protocol": "trojan",
-      "settings": {
-        "clients": [
-          {
-            "password": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
-            "level": 0,
-            "email": "love@example.com"
-          }
-        ],
-        "fallbacks": [
-          {
-            "dest": 80
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "none",
-        "tcpSettings": {
-          "acceptProxyProtocol": true
-        }
-      }
-    },
-    {
-      "port": 1234,
-      "listen": "127.0.0.1",
+      "port": 80,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
-            "level": 0,
-            "email": "love@example.com"
+            "id": "87de143b-192a-42bc-9352-1ef1f6c47b5a"
           }
         ],
         "decryption": "none"
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/websocket"
-        }
-      }
-    },
-    {
-      "port": 2345,
-      "listen": "127.0.0.1",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
-            "level": 0,
-            "email": "love@example.com"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "none",
-        "tcpSettings": {
-          "acceptProxyProtocol": true,
-          "header": {
-            "type": "http",
-            "request": {
-              "path": [
-                "/vmesstcp"
-              ]
-            }
-          }
-        }
-      }
-    },
-    {
-      "port": 3456,
-      "listen": "127.0.0.1",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "12a510c6-84d4-4e3c-9244-0d3da07af91d",
-            "level": 0,
-            "email": "love@example.com"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/vmessws"
-        }
+        "security": "none"
       }
     }
   ],
   "outbounds": [
     {
-      "protocol": "freedom"
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
     }
   ]
 }
@@ -194,5 +107,7 @@ systemctl restart xray
 
 #install bbr
 
-curl -LJO https://github.com/horapusa-lk/hp-v2/raw/main/bbr.sh
-bash bbr.sh
+mkdir ~/across
+git clone https://github.com/teddysun/across ~/across
+chmod 777 ~/across
+bash ~/across/bbr.sh
