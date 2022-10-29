@@ -116,7 +116,8 @@ class ServerManager:
             name = json_file["inbounds"][0]["settings"]["clients"][uuid_index]["user_name"]
             created_date = json_file["inbounds"][0]["settings"]["clients"][uuid_index]["created_date"]
             expire_date = json_file["inbounds"][0]["settings"]["clients"][uuid_index]["expire_date"]
-            config_list.append(f"""Name : {name}
+            config_list.append(f"""Config : {uuid_index}
+Name : {name}
 Created date : {created_date}    
 Expire date : {expire_date}
 Config text : vless://{uuid}@{public_ip}:443?security=tls&encryption=none&type=ws&sni=zoom.us#{name}-Hora-Pusa-VPN""")
