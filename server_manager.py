@@ -57,7 +57,7 @@ class ServerManager:
             "created_date": f"{today}",
             "expire_date": f"{expire_date}"
         })
-        vless_config = f"""vless://{uuid}@{public_ip}:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN"""
+        vless_config = f"""vless://{uuid}@{public_ip}:443?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN"""
         with open('/usr/local/etc/xray/config.json', 'w') as json_write:
             json.dump(json_file, json_write)
         subprocess.run("sudo service xray restart", shell=True)
@@ -122,7 +122,7 @@ class ServerManager:
             config_list.append(f"""Name : {name}
 Created date : {created_date}    
 Expire date : {expire_date}
-Config text : vless://{uuid}@{public_ip}:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN""")
+Config text : vless://{uuid}@{public_ip}:443?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=your.package.sni#{name}-Hora-Pusa-VPN""")
 
             uuid_index += 1
         return config_list
