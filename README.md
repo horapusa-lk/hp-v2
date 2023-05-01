@@ -9,6 +9,7 @@ This is an auto-script for Ubuntu 23.04 to install Xray-Core with vless+ws confi
  - User expire date with automatic expire.
  - User bandwith cap feature.
  - Server controlled via telegram bot
+```
 
 #### 29-04-2023 UPDATE ☑️
 ```
