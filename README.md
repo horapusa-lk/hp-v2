@@ -45,7 +45,7 @@ using this server bot.
 ## :heavy_exclamation_mark: Installation
 ```
 sudo su 
-wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/horapusa-Xray && bash ./horapusa-Xray install
+wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/horapusa-vless && bash ./horapusa-vless install
 ```
 
 ## :octocat: Credits
