@@ -45,6 +45,7 @@ using this server bot.
 ## :heavy_exclamation_mark: Installation
 ```
 sudo su 
+cd /root
 wget https://raw.githubusercontent.com/horapusa-lk/hp-v2/main/horapusa-vless && bash ./horapusa-vless install
 ```
 
