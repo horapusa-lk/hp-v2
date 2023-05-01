@@ -28,6 +28,7 @@ This is an auto-script for Ubuntu 23.04 to install Xray-Core with vless+ws confi
  - Bugs fix
  ```
 
+
 ![image](https://user-images.githubusercontent.com/73831309/235420778-a88f3469-c623-4eef-8fe8-d94fb20cde1e.png)
 ![image](https://user-images.githubusercontent.com/73831309/235420789-6fd723cb-6efa-4a1c-94d2-3ccc6ec6282d.png)
 
